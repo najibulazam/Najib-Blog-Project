@@ -1,0 +1,2 @@
+from project_folder import settings
+print(settings.DEFAULT_FILE_STORAGE)

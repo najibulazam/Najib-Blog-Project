@@ -10,6 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.1/ref/settings/
 """
 
+import cloudinary_storage
 from pathlib import Path
 import os
 
@@ -42,6 +43,8 @@ INSTALLED_APPS = [
     'blog',
     'crispy_forms',
     'crispy_bootstrap5',
+    'cloudinary_storage',
+    'cloudinary',
 ]
 
 CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
@@ -84,16 +87,24 @@ WSGI_APPLICATION = 'project_folder.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': 'railway',
+#         'USER': 'postgres',
+#         'PASSWORD': 'UyiKXNJBYzSbIwBaJZNIAlkQBLxtPijc',
+#         'HOST': 'yamanote.proxy.rlwy.net',
+#         'PORT': '11241',
+#     }
+# }
+
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'railway',
-        'USER': 'postgres',
-        'PASSWORD': 'UyiKXNJBYzSbIwBaJZNIAlkQBLxtPijc',
-        'HOST': 'yamanote.proxy.rlwy.net',
-        'PORT': '11241',
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / "db.sqlite3",
     }
 }
+
 
 
 # Password validation
@@ -141,3 +152,11 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+CLOUDINARY_STORAGE = {
+    'CLOUD_NAME': 'dohxtmd1j',
+    'API_KEY': '183191516581476',
+    'API_SECRET': 'qowzJzg6IDHZ0s2vR-LCyguWhGM',
+}
+
+DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
